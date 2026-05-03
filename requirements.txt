@@ -1,0 +1,41 @@
+# Core dependencies
+numpy>=1.24.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+tqdm>=4.65.0
+click>=8.1.0
+
+# Cloud SDKs
+boto3>=1.26.0
+google-cloud-compute>=1.11.0
+azure-mgmt-compute>=30.0.0
+
+# ML frameworks
+torch>=2.0.0
+tensorflow>=2.12.0
+jax>=0.4.0
+jaxlib>=0.4.0
+
+# API clients
+modal>=0.52.0
+runpod>=1.12.0
+
+# Monitoring and logging
+dataclasses-json>=0.6.0
+wandb>=0.15.0
+psutil>=5.9.0
+
+# Configuration management
+pyyaml>=6.0
+hydra-core>=1.3.0
+omegaconf>=2.3.0
+
+# Testing
+pytest>=7.4.0
+pytest-xdist>=3.3.0
+
+# Development
+black>=23.0.0
+isort>=5.12.0
