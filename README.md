@@ -1,56 +1,42 @@
-# GPU Cloud Benchmark
+# GPU benchmark prototype
 
-An open-source tool for benchmarking GPU performance across different cloud providers and instance types.
+## Actual implementation status
 
-## Features
+This repository contains an unfinished orchestrator sketch, not a working
+multi-cloud benchmark. `benchmark.py` imports `cloud_providers`, `benchmarks`
+and `reporting`, which are absent. The referenced `configs/` and report
+implementations are absent too. There are no committed measurements proving
+provider performance, reliability, training throughput or cost efficiency.
 
-- **Multi-cloud support**: Lambda Labs, Modal, RunPod, AWS, GCP, Azure
-- **Comprehensive testing**: Training, inference, and latency benchmarks
-- **Automated reporting**: JSON, CSV, and interactive HTML reports
-- **Cost analysis**: $/TFLOP and $/hour comparisons
-- **Extensible**: Easy to add new providers and tests
+The previous provider support table and quick-start commands were inaccurate.
+Installing `requirements.txt` does not supply the missing implementations.
+That broad dependency list is retained as historical prototype context; do
+not install the ML frameworks and cloud SDKs expecting a runnable tool.
 
-## Quick Start
+## Proposed smaller role
 
-```bash
-# Clone repository
-git clone https://github.com/RoTo-id/gpu-cloud-benchmark.git
-cd gpu-cloud-benchmark
+Use this as a workload benchmark specification and evidence component before
+considering an independent product or cloud provisioning service.
 
-# Install dependencies
-pip install -r requirements.txt
+A useful comparison should describe the actual workload, model and version,
+hardware and VRAM headroom, quality threshold, measured latency/throughput,
+sample size, measurement date, and recurring cost assumptions. Compare local
+hardware with cloud options only when both have suitable evidence. Report
+missing measurements as unknown; do not infer model quality from GPU speed.
 
-# Run basic benchmark
-python benchmark.py --config configs/quick_test.json
-```
+Keep measurement collection separate from comparison and execution. Reuse an
+existing result contract/comparator where available. Synthetic examples,
+declared capabilities and manually entered prices do not establish execution
+or current provider pricing. No automatic resource purchase is implemented
+or authorized by this repository.
 
-## Supported Providers
+## Next useful evidence
 
-| Provider | Instance Types | Status |
-|----------|----------------|---------|
-| Lambda Labs | GPU instances | ✅ Full |
-| Modal | Serverless GPU | ✅ Full |
-| RunPod | GPU pods | ✅ Full |
-| AWS EC2 | p3, p4, g4dn, g5 | ✅ Full |
-| Google Cloud | a2, a3, g2 | ✅ Full |
-| Azure | NC, ND, NV | ⚠️ Beta |
+1. Select one real workload and an existing measurement runner.
+2. Record a repeatable local baseline with quality and resource measurements.
+3. Compare an independently measured alternative for the same workload.
+4. Test whether the comparison changes a useful compute decision.
 
-## Benchmark Types
-
-- **Training**: PyTorch, TensorFlow, JAX
-- **Inference**: Latency, throughput, batch processing
-- **Memory**: VRAM utilization, memory bandwidth
-- **Cost**: Hourly rates, $/TFLOP analysis
-- **Reliability**: Uptime, spot instance interruptions
-
-## Configuration
-
-Create custom benchmark configurations in `configs/`. See `configs/example.json` for all options.
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and contribution guidelines.
-
-## License
-
-MIT License - see [LICENSE](LICENSE) for details.
+Broader connectors and a commercial interface should follow demonstrated
+demand. Preserve the prototype history; there is no reason to construct six
+provider integrations before that validation.
